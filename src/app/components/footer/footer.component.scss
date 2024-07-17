@@ -1,0 +1,104 @@
+$color-primary: #7393A7;
+$color-secondary: #6C737E;
+$color-light: #E8ECF1;
+$color-lighter: #B5CFD8;
+
+.footer {
+    background-color: $color-light;
+    padding: 20px 0;
+    color: $color-secondary;
+
+    .footer-content {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        max-width: 1500px;
+        margin: 0 auto;
+        padding: 0 15px;
+
+        .footer-section {
+            flex: 1;
+            padding: 10px;
+            min-width: 250px;
+            // margin: 10px;
+            
+            h3 {
+                margin-bottom: 15px;
+                color: $color-primary;
+            }
+
+            ul {
+                list-style: none;
+                padding: 0;
+
+                li {
+                    margin-bottom: 10px;
+
+                    a {
+                        text-decoration: none;
+                        color: $color-primary;
+
+                        &:hover {
+                            text-decoration: underline;
+                        }
+                    }
+                }
+            }
+
+            p,
+            form {
+                margin: 5px 0;
+
+                i {
+                    margin-right: 10px;
+                }
+            }
+
+            form {
+                display: flex;
+                flex-direction: column;
+
+                input {
+                    padding: 8px;
+                    margin-bottom: 10px;
+                    border: 1px solid $color-lighter;
+                    border-radius: 4px;
+                }
+
+                button {
+                    padding: 8px;
+                    background-color: $color-primary;
+                    color: #fff;
+                    border: none;
+                    border-radius: 4px;
+                    cursor: pointer;
+
+                    &:hover {
+                        background-color: $color-secondary;
+                    }
+                }
+            }
+        }
+    }
+    
+    .footer-bottom {
+        text-align: center;
+        padding: 10px;
+        background-color: $color-lighter;
+
+        .social-icons {
+            margin-top: 10px;
+
+            a {
+                color: $color-primary;
+                margin: 0 10px;
+                text-decoration: none;
+                font-size: 1.2em;
+
+                &:hover {
+                    color: $color-secondary;
+                }
+            }
+        }
+    }
+}

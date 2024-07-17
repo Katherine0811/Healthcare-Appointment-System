@@ -1,0 +1,40 @@
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-section about">
+            <h3>Our Mission</h3>
+            <p>We simplify your healthcare scheduling experience, ensuring you get the care you need, when you need it.
+            </p>
+        </div>
+        <div class="footer-section links">
+            <h3>Explore</h3>
+            <ul>
+                <li *ngIf="dashboardRoute"><a [routerLink]="dashboardRoute">Dashboard</a></li>
+                <li><a routerLink="/appointment-booking">Appointment Booking</a></li>
+                <li><a routerLink="/about">About Us</a></li>
+                <li><a routerLink="/contact">Contact Us</a></li>
+            </ul>
+        </div>
+        <div class="footer-section contact">
+            <h3>Get in Touch</h3>
+            <p><i class="fa fa-map-marker"></i> 123, Example Street, Dublin, Ireland</p>
+            <p><i class="fa fa-phone"></i> +353 89 494 9353</p>
+            <p><i class="fa fa-envelope"></i> info&#64;healthcare.com</p>
+        </div>
+        <div class="footer-section newsletter">
+            <h3>Stay Updated</h3>
+            <form>
+                <input type="email" placeholder="Your email address" required>
+                <button type="submit">Subscribe Our Newsletter</button>
+            </form>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2024 Healthcare Scheduler | All Rights Reserved</p>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+    </div>
+</footer>

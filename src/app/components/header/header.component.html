@@ -1,0 +1,52 @@
+<header class="header">
+    <div class="header-container">
+        <!-- Logo and Brand Name -->
+        <div class="logo-container">
+            <a routerLink="/">
+                <span class="brand-name">Healthcare Scheduler</span>
+            </a>
+        </div>
+
+        <!-- Navigation Menu -->
+        <nav class="nav-menu">
+            <ul>
+                <li class="dropdown">
+                    <span>Pages <i class="fa fa-angle-down"></i></span>
+                    <ul class="dropdown-menu">
+                        <li *ngIf="dashboardRoute"><a [routerLink]="dashboardRoute">Dashboard</a></li>
+                        <li><a routerLink="/appointment-booking">Appointment</a></li>
+                        <li><a routerLink="/about">About Us</a></li>
+                        <li><a routerLink="/contact">Contact Us</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Search Bar -->
+        <div class="search-bar">
+            <form action="/search" method="get">
+                <input type="text" placeholder="Find a specialist healthcare provider">
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+
+        <!-- Call-to-Action Buttons -->
+        <div class="cta-buttons">
+            <a *ngIf="!currentUser" routerLink="/register" class="btn">Sign Up</a>
+            <a *ngIf="!currentUser" routerLink="/login" class="btn btn-outline">Login</a>
+            <a *ngIf="currentUser" (click)="onLogout()" class="btn btn-logout">Logout</a>
+        </div>
+
+        <!-- Utility Links -->
+        <div class="utility-links">
+            <a href="#">Terms of Service</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">FAQs</a>
+        </div>
+
+        <!-- Notification Bell -->
+        <div class="notification-bell">
+            <a href="#"><i class="fa fa-bell"></i></a>
+        </div>
+    </div>
+</header>

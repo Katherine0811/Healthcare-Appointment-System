@@ -1,0 +1,33 @@
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <h1 class="login-title">Login</h1>
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                <div class="input-group">
+                    <label for="emailAddress">Email Address</label>
+                    <input type="email" id="emailAddress" formControlName="emailAddress" required>
+                    <div *ngIf="f['emailAddress'].touched && f['emailAddress'].invalid">
+                        <small *ngIf="f['emailAddress'].errors?.['required']">Email is required.</small>
+                        <small *ngIf="f['emailAddress'].errors?.['emailAddress']">Email format is invalid.</small>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" formControlName="password" required>
+                    <div *ngIf="f['password'].touched && f['password'].invalid">
+                        <small *ngIf="f['password'].errors?.['required']">Password is required.</small>
+                        <small *ngIf="f['password'].errors?.['minlength']">Password must be at least 6 characters long.</small>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+            <div class="additional-links">
+                <a routerLink="/register">Don't have an account? Sign up</a>
+                <a href="#">Forgot Password?</a>
+            </div>
+            <div *ngIf="errorMessage" class="error-message">
+                {{ errorMessage }}
+            </div>
+        </div>
+    </div>
+</body>

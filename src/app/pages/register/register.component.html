@@ -1,0 +1,133 @@
+<body>
+    <div class="register-container">
+        <div class="register-box">
+            <h1 class="register-title">Sign Up</h1>
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                <div class="input-group">
+                    <label for="name">Name</label>
+                    <input id="name" formControlName="name" type="text" required>
+                    <div *ngIf="form.get('name')?.touched && form.get('name')?.invalid">
+                        <small *ngIf="form.get('name')?.errors?.['required']">Name is required.</small>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="emailAddress">Email Address</label>
+                    <input id="emailAddress" formControlName="emailAddress" type="email" required>
+                    <div *ngIf="form.get('emailAddress')?.touched && form.get('emailAddress')?.invalid">
+                        <small *ngIf="form.get('emailAddress')?.errors?.['required']">Email is required.</small>
+                        <small *ngIf="form.get('emailAddress')?.errors?.['email']">Email format is invalid.</small>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input id="password" formControlName="password" type="password" required>
+                    <div *ngIf="form.get('password')?.touched && form.get('password')?.invalid">
+                        <small *ngIf="form.get('password')?.errors?.['required']">Password is required.</small>
+                        <small *ngIf="form.get('password')?.errors?.['minlength']">Password must be at least 6 characters long.</small>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input id="confirmPassword" formControlName="confirmPassword" type="password" required>
+                    <div *ngIf="form.get('confirmPassword')?.touched && form.get('confirmPassword')?.invalid">
+                        <small *ngIf="form.get('confirmPassword')?.errors?.['required']">Password is required.</small>
+                        <small *ngIf="form.get('confirmPassword')?.errors?.['minlength']">Password must be at least 6 characters long.</small>
+                    </div>
+                    <div>
+                        <small *ngIf="form.hasError('mismatch')">Passwords do not match.</small>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="phone">Phone Number</label>
+                    <input id="phone" formControlName="phoneNumber" type="text" required pattern="^\+353\d{8,}$">
+                    <div *ngIf="form.get('phoneNumber')?.touched && form.get('phoneNumber')?.invalid">
+                        <small *ngIf="form.get('phoneNumber')?.errors?.['required']">Phone number is required.</small>
+                        <small *ngIf="form.get('phoneNumber')?.errors?.['pattern']">Phone number must start with +353 and contain at least 8 digits.</small>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="role">Role</label>
+                    <select id="role" formControlName="role" (change)="onRoleChange($event)" required>
+                        <option value="">Select Role</option>
+                        <option value="Patient">Patient</option>
+                        <option value="Provider">Provider</option>
+                    </select>
+                    <div *ngIf="form.get('role')?.touched && form.get('role')?.invalid">
+                        <small *ngIf="form.get('role')?.errors?.['required']">Role is required.</small>
+                    </div>
+                </div>
+
+                <div *ngIf="isPatient" class="patient-fields">
+                    <div class="input-group">
+                        <label for="dob">Date of Birth</label>
+                        <input id="dob" formControlName="dateOfBirth" type="date">
+                        <div *ngIf="form.get('dateOfBirth')?.touched && form.get('dateOfBirth')?.invalid">
+                            <small *ngIf="form.get('dateOfBirth')?.errors?.['required']">Date of birth is required.</small>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="gender">Gender</label>
+                        <select id="gender" formControlName="gender">
+                            <option value="">Select Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <div *ngIf="form.get('gender')?.touched && form.get('gender')?.invalid">
+                            <small *ngIf="form.get('gender')?.errors?.['required']">Gender is required.</small>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="address">Home Address</label>
+                        <input id="address" formControlName="homeAddress" type="text">
+                        <div *ngIf="form.get('homeAddress')?.touched && form.get('homeAddress')?.invalid">
+                            <small *ngIf="form.get('homeAddress')?.errors?.['required']">Home address is required.</small>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="insurance">Insurance Number</label>
+                        <input id="insurance" formControlName="insuranceNumber" type="text">
+                        <div *ngIf="form.get('insuranceNumber')?.touched && form.get('insuranceNumber')?.invalid">
+                            <small *ngIf="form.get('insuranceNumber')?.errors?.['required']">Insurance number is required.</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div *ngIf="isProvider" class="provider-fields">
+                    <div class="input-group">
+                        <label for="specialization">Specialization</label>
+                        <select id="specialization" formControlName="specialization">
+                            <option value="">Select Specialization</option>
+                            <option value="Cardiology">Cardiology</option>
+                            <option value="Dermatology">Dermatology</option>
+                            <option value="Neurology">Neurology</option>
+                            <option value="Pediatrics">Pediatrics</option>
+                            <option value="Radiology">Radiology</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="license">License Number</label>
+                        <input id="license" formControlName="licenseNumber" type="text">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Sign Up</button>
+            </form>
+            <div class="additional-links">
+                <a routerLink="/login">Already have an account? Login</a>
+            </div>
+            <div *ngIf="errorMessage" class="error-message">
+                {{ errorMessage }}
+            </div>
+        </div>
+    </div>
+</body>

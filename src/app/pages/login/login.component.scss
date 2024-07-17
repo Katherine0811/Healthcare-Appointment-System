@@ -1,0 +1,103 @@
+$color-primary: #7393A7;
+$color-secondary: #6C737E;
+$color-light: #E8ECF1;
+$color-lighter: #B5CFD8;
+$color-error: #FF6F61;
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 15px;
+}
+
+.login-box {
+    background-color: $color-light;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+
+    .login-title {
+        font-weight: bold;
+        font-size: 1.5em;
+        color: $color-primary;
+        margin-bottom: 20px;
+    }
+
+    form {
+        .input-group {
+            margin-bottom: 15px;
+            text-align: left;
+
+            label {
+                display: block;
+                margin-bottom: 5px;
+                color: $color-secondary;
+            }
+
+            input {
+                width: 95%;
+                padding: 10px;
+                border: 1px solid $color-lighter;
+                border-radius: 4px;
+                font-size: 1em;
+            }
+        }
+
+        .btn {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1em;
+            cursor: pointer;
+
+            &.btn-primary {
+                background-color: $color-primary;
+                color: #fff;
+
+                &:hover {
+                    background-color: darken($color-primary, 10%);
+                }
+            }
+        }
+    }
+
+    .additional-links {
+        margin-top: 15px;
+
+        a {
+            display: block;
+            margin-bottom: 5px;
+            color: $color-primary;
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .error-message {
+        color: $color-error;
+        background-color: lighten($color-error, 50%);
+        border: 1px solid darken($color-error, 10%);
+        border-radius: 4px;
+        padding: 10px;
+        margin-top: 10px;
+        text-align: left;
+    }
+}
