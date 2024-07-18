@@ -16,90 +16,77 @@ $color-lighter: #B5CFD8;
         border-radius: 5px;
         margin-right: 20px;
 
-        .profile-info {
-            h2 {
-                color: $color-primary;
-                margin-bottom: 10px;
-            }
+        h2 {
+            color: $color-primary;
+            margin-bottom: 10px;
+        }
 
-            p {
-                margin: 5px 0;
-            }
+        p {
+            margin: 5px 0;
         }
     }
 
-    .dashboard-content {
+    .appointments-container {
         flex: 1;
 
-        .appointments-section {
-            margin-bottom: 30px;
+        h2 {
+            color: $color-primary;
+            margin-bottom: 10px;
+        }
 
-            h2 {
-                color: $color-primary;
-                margin-bottom: 10px;
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+
+            th,
+            td {
+                padding: 10px;
+                text-align: left;
+                border-bottom: 1px solid $color-lighter;
             }
 
-            .btn-primary {
+            th {
+                background-color: $color-lighter;
+                color: $color-secondary;
+            }
+
+            td {
+                background-color: white;
+            }
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+
+            &.btn-primary {
                 background-color: $color-primary;
                 color: white;
-                padding: 10px 20px;
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
-                margin-bottom: 10px;
 
                 &:hover {
                     background-color: darken($color-primary, 10%);
                 }
             }
 
-            .appointment-list {
-                list-style: none;
-                padding: 0;
+            &.btn-danger {
+                background-color: #d9534f;
+                color: white;
 
-                li {
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    padding: 10px;
-                    background-color: white;
-                    border: 1px solid $color-lighter;
-                    border-radius: 5px;
-                    margin-bottom: 10px;
+                &:hover {
+                    background-color: darken(#d9534f, 10%);
+                }
+            }
 
-                    .appointment-details {
-                        p {
-                            margin: 5px 0;
-                        }
-                    }
+            &.btn-secondary {
+                background-color: $color-secondary;
+                color: white;
 
-                    .appointment-actions {
-                        .btn {
-                            padding: 5px 10px;
-                            border: none;
-                            border-radius: 5px;
-                            cursor: pointer;
-
-                            &.btn-danger {
-                                background-color: #d9534f;
-                                color: white;
-
-                                &:hover {
-                                    background-color: darken(#d9534f, 10%);
-                                }
-                            }
-
-                            &.btn-secondary {
-                                background-color: $color-secondary;
-                                color: white;
-                                margin-left: 10px;
-
-                                &:hover {
-                                    background-color: darken($color-secondary, 10%);
-                                }
-                            }
-                        }
-                    }
+                &:hover {
+                    background-color: darken($color-secondary, 10%);
                 }
             }
         }
