@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { AppointmentDTO } from '../models/appointment-dto.model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,23 +11,23 @@ export class AppointmentService {
 
   constructor(private http: HttpClient) {}
 
-  getUpcomingAppointments(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/upcoming`);
+  getUpcomingAppointments(patientId: number): Observable<AppointmentDTO[]> {
+    return this.http.get<AppointmentDTO[]>(`${this.apiUrl}/upcoming/${patientId}`);
   }
 
-  getPastAppointments(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/past`);
+  getPastAppointments(patientId: number): Observable<AppointmentDTO[]> {
+    return this.http.get<AppointmentDTO[]>(`${this.apiUrl}/past/${patientId}`);
   }
 
-  bookAppointment(appointmentDetails: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/book`, appointmentDetails);
+  bookAppointment(appointmentDetails: AppointmentDTO): Observable<AppointmentDTO> {
+    return this.http.post<AppointmentDTO>(`${this.apiUrl}/book`, appointmentDetails);
   }
 
-  cancelAppointment(appointmentId: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/cancel/${appointmentId}`);
+  cancelAppointment(appointmentId: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/cancel/${appointmentId}`);
   }
 
-  rescheduleAppointment(appointmentId: number, newDetails: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/reschedule/${appointmentId}`, newDetails);
+  rescheduleAppointment(appointmentId: number, newDetails: AppointmentDTO): Observable<AppointmentDTO> {
+    return this.http.put<AppointmentDTO>(`${this.apiUrl}/reschedule/${appointmentId}`, newDetails);
   }
 }

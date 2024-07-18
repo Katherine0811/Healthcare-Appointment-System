@@ -1,48 +1,41 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
-import { HttpClient } from '@angular/common/http';
-import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router'; 
 import { AppointmentService } from '../../../services/appointment.service';
+import { AppointmentDTO } from '../../../models/appointment-dto.model';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'patient-dashboard',
   standalone: true,
   imports: [RouterModule, CommonModule],
   templateUrl: './patient-dashboard.component.html',
-  styleUrl: './patient-dashboard.component.scss'
+  styleUrls: ['./patient-dashboard.component.scss']
 })
-
 export class PatientDashboardComponent implements OnInit {
   currentUser: any;
-  upcomingAppointments: any[] = [];
-  pastAppointments: any[] = [];
+  upcomingAppointments: AppointmentDTO[] = [];
+  pastAppointments: AppointmentDTO[] = [];
 
   constructor(private authService: AuthService, private appointmentService: AppointmentService) {}
 
   ngOnInit(): void {
     this.currentUser = this.authService.getCurrentUser();
-    // Fetch patient specific data
     this.fetchUpcomingAppointments();
     this.fetchPastAppointments();
   }
 
   fetchUpcomingAppointments(): void {
-    this.appointmentService.getUpcomingAppointments().subscribe((data: any) => {
+    const patientId = this.currentUser.patientId;
+    this.appointmentService.getUpcomingAppointments(patientId).subscribe((data: AppointmentDTO[]) => {
       this.upcomingAppointments = data;
     });
   }
 
   fetchPastAppointments(): void {
-    this.appointmentService.getPastAppointments().subscribe((data: any) => {
+    const patientId = this.currentUser.patientId;
+    this.appointmentService.getPastAppointments(patientId).subscribe((data: AppointmentDTO[]) => {
       this.pastAppointments = data;
-    });
-  }
-
-  bookAppointment(appointmentDetails: any): void {
-    this.appointmentService.bookAppointment(appointmentDetails).subscribe((response: any) => {
-      console.log('Appointment booked successfully', response);
-      this.fetchUpcomingAppointments(); // Refresh the upcoming appointments list
     });
   }
 
@@ -54,7 +47,7 @@ export class PatientDashboardComponent implements OnInit {
   }
 
   rescheduleAppointment(appointmentId: number, newDetails: any): void {
-    this.appointmentService.rescheduleAppointment(appointmentId, newDetails).subscribe((response: any) => {
+    this.appointmentService.rescheduleAppointment(appointmentId, newDetails).subscribe((response: AppointmentDTO) => {
       console.log('Appointment rescheduled successfully', response);
       this.fetchUpcomingAppointments(); // Refresh the upcoming appointments list
     });

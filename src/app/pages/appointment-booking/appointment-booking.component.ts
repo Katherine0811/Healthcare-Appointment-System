@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { AppointmentService } from '../../services/appointment.service';
-import { Appointment } from '../../models/appointment.model'
 import { Provider } from '../../models/provider.model'
+import { AppointmentDTO } from '../../models/appointment-dto.model';
 @Component({
   selector: 'app-appointment-booking',
   standalone: true,
@@ -34,29 +34,13 @@ export class AppointmentBookingComponent implements OnInit {
     // this.loadDoctors();
   }
 
-  // loadDoctors() {
-  //   this.appointmentService.getDoctors().subscribe((data: Provider[]) => {
-  //     this.doctors = data;
-  //     this.filteredDoctors = [...this.doctors];
-  //   });
-  // }
+  
 
-  // filterDoctors(event: any) {
-  //   const searchTerm = event.target.value.toLowerCase();
-  //   this.filteredDoctors = this.doctors.filter(
-  //     doctor => doctor.name.toLowerCase().indexOf(searchTerm) !== -1
-  //   );
-  // }
-
-  // fetchAvailableTimes() {
-  //   const doctorId = this.appointmentForm.value.doctor;
-  //   const selectedDate = this.appointmentForm.value.date;
-  //   this.appointmentService
-  //     .getAvailableTimes(doctorId, selectedDate)
-  //     .subscribe((data: string[]) => {
-  //       this.availableTimes = data;
-  //     });
-  // }
+  bookAppointment(appointmentDetails: any): void {
+    this.appointmentService.bookAppointment(appointmentDetails).subscribe((response: AppointmentDTO) => {
+      console.log('Appointment booked successfully', response);
+    });
+  }
 
   onSubmit() {
   //   if (this.appointmentForm.valid) {
