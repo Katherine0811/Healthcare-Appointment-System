@@ -1,0 +1,24 @@
+<div class="popup">
+    <h3>Availability for {{ date }}</h3>
+    <div *ngIf="!isEditMode">
+        <ul>
+            <li *ngFor="let slot of selectedTimeSlots">
+                <span>{{ slot }}</span>
+            </li>
+        </ul>
+        <button (click)="toggleEditMode()">Change Availability</button>
+        <button (click)="closePopup()">Exit Panel</button>
+    </div>
+    <div *ngIf="isEditMode">
+        <ul>
+            <li *ngFor="let slot of timeSlots">
+                <label>
+                    <input type="checkbox" [checked]="selectedTimeSlots.has(slot)" (change)="toggleTimeSlot(slot)">
+                    {{ slot }}
+                </label>
+            </li>
+        </ul>
+        <button (click)="onSubmit()">Submit</button>
+        <button (click)="onCancel()">Cancel</button>
+    </div>
+</div>

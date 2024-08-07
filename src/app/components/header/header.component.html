@@ -14,8 +14,7 @@
                     <span>Pages <i class="fa fa-angle-down"></i></span>
                     <ul class="dropdown-menu">
                         <li *ngIf="dashboardRoute"><a [routerLink]="dashboardRoute">Dashboard</a></li>
-                        <li><a routerLink="/appointment-booking">Appointment</a></li>
-                        <li><a routerLink="/about">About Us</a></li>
+                        <li *ngIf="functionName"><a [routerLink]="functionRoute">{{ functionName }}</a></li>
                         <li><a routerLink="/contact">Contact Us</a></li>
                     </ul>
                 </li>

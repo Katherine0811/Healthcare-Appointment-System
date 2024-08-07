@@ -1,37 +1,38 @@
-<body>
-    <div class="appointment-container">
-        <div class="appointment-box">
-            <h1 class="appointment-title">Book an Appointment</h1>
+<div class="appointment-container">
+    <div class="appointment-box">
+        <h1 class="appointment-title">Book an Appointment</h1>
 
-            <form [formGroup]="appointmentForm" (ngSubmit)="onSubmit()">
-                
-                <div class="input-group">
-                    <label for="doctor">Doctor</label>
-                    <input id="doctor" formControlName="doctor" list="doctorList" placeholder="Search and select doctor"
-                        required />
-                    <!-- <datalist id="doctorList">
-                        <option *ngFor="let doctor of doctors" [value]="doctor.name">{{ doctor.name }}</option>
-                    </datalist> -->
-                </div>
-    
-                <div class="input-group">
-                    <label for="date">Date</label>
-                    <input id="date" formControlName="date" type="date" required />
-                </div>
-    
-                <div class="input-group">
-                    <label for="time">Time</label>
-                    <!-- <select id="time" formControlName="time" required>
-                        <option *ngFor="let time of availableTimes" [value]="time">{{ time }}</option>
-                    </select> -->
-                </div>
-    
-                <button type="submit" class="btn btn-primary">Book Appointment</button>
-            </form>
+        <form [formGroup]="appointmentForm" (ngSubmit)="onSubmit()">
 
-            <div class="additional-links">
-                <a routerLink="/dashboard">Back to Dashboard</a>
+            <div class="input-group">
+                <label for="providerName">Doctor Name</label>
+                <select id="providerName" formControlName="providerName" (change)="onDoctorChange()" required>
+                    <option value="" disabled selected>Select Doctor</option>
+                    <option *ngFor="let doctor of doctors">{{ doctor }}</option>
+                </select>
             </div>
+
+            <div class="input-group">
+                <label for="appointmentDate">Appointment Date</label>
+                <input id="appointmentDate" formControlName="appointmentDate" type="date" (change)="onDateChange()" required />
+            </div>
+
+            <div class="input-group" *ngIf="selectedProvider && selectedDate">
+                <label for="appointmentTime">Appointment Time</label>
+                <select id="appointmentTime" formControlName="appointmentTime" required>
+                    <option value="" disabled selected>Select Time</option>
+                    <option *ngFor="let time of availableTimes" [value]="time">{{ time }}</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Book Appointment</button>
+        </form>
+
+        <div class="additional-links">
+            <a routerLink="/patient-dashboard">Back to Dashboard</a>
+        </div>
+        <div *ngIf="errorMessage" class="error-message">
+            {{ errorMessage }}
         </div>
     </div>
-</body>
+</div>

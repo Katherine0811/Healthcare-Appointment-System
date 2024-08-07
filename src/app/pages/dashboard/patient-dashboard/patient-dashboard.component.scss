@@ -2,6 +2,7 @@ $color-primary: #7393A7;
 $color-secondary: #6C737E;
 $color-light: #E8ECF1;
 $color-lighter: #B5CFD8;
+$error-color: #d9534f;
 
 .dashboard-container {
     display: flex;
@@ -10,19 +11,51 @@ $color-lighter: #B5CFD8;
     color: $color-secondary;
 
     .profile-sidebar {
-        width: 250px;
-        padding: 20px;
-        background-color: $color-lighter;
+        width: 375px;
         border-radius: 5px;
         margin-right: 20px;
 
         h2 {
-            color: $color-primary;
             margin-bottom: 10px;
         }
 
-        p {
-            margin: 5px 0;
+        .profile-display {
+            padding: 20px;
+            margin-bottom: 10px;
+            color: $color-light;
+            background-color: $color-secondary;
+            p {
+                margin: 5px 0;
+            }
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            text-align: center;
+
+            &.btn-primary {
+                background-color: $color-primary;
+                color: white;
+
+                &:hover {
+                    background-color: darken($color-primary, 10%);
+                }
+            }
+
+            &.btn-danger {
+                background-color: $error-color;
+                color: white;
+
+                &:hover {
+                    background-color: darken($error-color, 10%);
+                }
+            }
         }
     }
 
@@ -73,11 +106,11 @@ $color-lighter: #B5CFD8;
             }
 
             &.btn-danger {
-                background-color: #d9534f;
+                background-color: $error-color;
                 color: white;
 
                 &:hover {
-                    background-color: darken(#d9534f, 10%);
+                    background-color: darken($error-color, 10%);
                 }
             }
 
@@ -89,6 +122,15 @@ $color-lighter: #B5CFD8;
                     background-color: darken($color-secondary, 10%);
                 }
             }
+        }
+
+        .error-message {
+            padding: 15px;
+            margin: 20px 0px;
+            border: 1px solid $error-color;
+            border-radius: 5px;
+            background-color: rgba($error-color, 0.1);
+            color: $error-color;
         }
     }
 }

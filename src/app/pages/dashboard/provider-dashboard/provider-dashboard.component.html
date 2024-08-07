@@ -1,1 +1,62 @@
-<p>provider dashboard works!</p>
+<div class="dashboard-container">
+    <div class="profile-sidebar">
+        <!-- Profile Information -->
+        <h2>Profile Information</h2>
+        <div class="profile-display">
+            <p><strong>Name:</strong> {{ currentUser.name }}</p>
+            <p><strong>Email:</strong> {{ currentUser.emailAddress }}</p>
+            <p><strong>Phone:</strong> {{ currentUser.phoneNumber }}</p>
+            <p><strong>Specialization:</strong> {{ currentUser.specialization }}</p>
+            <p><strong>License Number:</strong> {{ currentUser.licenseNumber }}</p>
+        </div>
+
+        <button class="btn btn-primary" (click)="openUpdateModal()">Update Details</button>
+        <button class="btn btn-danger" (click)="deleteAccount()">Delete Account</button>
+    </div>
+
+    <div class="appointments-container">
+        <!-- Upcoming Schedule -->
+        <h2>Upcoming Schedule</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Patient</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let appointment of upcomingAppointments">
+                    <td>{{ appointment.appointmentDate }}</td>
+                    <td>{{ appointment.appointmentTime }}</td>
+                    <td>{{ appointment.patientName }}</td>
+                    <td>
+                        <button class="btn btn-success"
+                            (click)="completeAppointment(appointment.appointmentId)">Complete</button>
+                        <button class="btn btn-info" (click)="viewPatientRecords(appointment.patientId)">View
+                            Records</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div *ngIf="upcomingErrorMessage" class="error-message">
+            {{ upcomingErrorMessage }}
+        </div>
+
+        <!-- Patient Records -->
+        <div *ngIf="selectedPatientRecords" class="patient-records">
+            <h2>Patient Records</h2>
+            <p><strong>Name:</strong> {{ selectedPatientRecords.user.name }}</p>
+            <p><strong>Email:</strong> {{ selectedPatientRecords.user.emailAddress }}</p>
+            <p><strong>Phone:</strong> {{ selectedPatientRecords.user.phoneNumber }}</p>
+            <p><strong>Date of Birth:</strong> {{ selectedPatientRecords.dateOfBirth }}</p>
+            <p><strong>Gender:</strong> {{ selectedPatientRecords.gender }}</p>
+            <p><strong>Address:</strong> {{ selectedPatientRecords.homeAddress }}</p>
+            <p><strong>Insurance Number:</strong> {{ selectedPatientRecords.insuranceNumber }}</p>
+        </div>
+        <div *ngIf="recordsErrorMessage" class="error-message">
+            {{ recordsErrorMessage }}
+        </div>
+    </div>
+</div>

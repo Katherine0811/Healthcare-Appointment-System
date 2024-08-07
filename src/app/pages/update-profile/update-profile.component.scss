@@ -13,7 +13,7 @@ body {
     margin: 0;
 }
 
-.appointment-container {
+.update-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -21,7 +21,7 @@ body {
     padding: 15px;
 }
 
-.appointment-box {
+.update-box {
     background-color: $color-light;
     padding: 20px;
     border-radius: 8px;
@@ -30,7 +30,7 @@ body {
     width: 100%;
     text-align: center;
 
-    .appointment-title {
+    .update-title {
         font-weight: bold;
         font-size: 1.5em;
         color: $color-primary;
@@ -65,6 +65,7 @@ body {
         .btn {
             width: 100%;
             padding: 10px;
+            margin: 5px 0px;
             border: none;
             border-radius: 4px;
             font-size: 1em;
@@ -78,20 +79,14 @@ body {
                     background-color: darken($color-primary, 10%);
                 }
             }
-        }
-    }
 
-    .additional-links {
-        margin-top: 15px;
+            &.btn-secondary {
+                background-color: $color-secondary;
+                color: #fff;
 
-        a {
-            display: block;
-            margin-bottom: 5px;
-            color: $color-primary;
-            text-decoration: none;
-
-            &:hover {
-                text-decoration: underline;
+                &:hover {
+                    background-color: darken($color-secondary, 10%);
+                }
             }
         }
     }

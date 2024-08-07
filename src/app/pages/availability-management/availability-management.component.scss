@@ -1,0 +1,125 @@
+$color-primary: #7393A7;
+$color-secondary: #6C737E;
+$color-light: #E8ECF1;
+$color-lighter: #B5CFD8;
+
+.calendar-container {
+    width: 80%;
+    margin: 20px auto;
+    text-align: center;
+    background-color: $color-light;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.calendar-header {
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    background-color: $color-secondary;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.calendar-header button {
+    font-weight: bold;
+    font-size: 1em;
+    background-color: $color-light;
+    color: $color-primary;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.calendar-header button:hover {
+    background-color: darken($color-light, 10%);
+}
+
+.calendar {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: $color-lighter;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.calendar th,
+.calendar td {
+    width: 14.28%;
+    border: 1px solid $color-light;
+    padding: 10px;
+    text-align: center;
+    background-color: white;
+}
+
+.calendar .day-cell {
+    cursor: pointer;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    line-height: 40px;
+    margin: 2px;
+    background-color: $color-light;
+}
+
+.calendar .day-cell:hover {
+    background-color: $color-primary;
+    color: white;
+}
+
+.calendar .placeholder {
+    background-color: $color-light;
+    visibility: hidden;
+}
+
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    padding: 20px;
+    background-color: white;
+    border: 1px solid $color-secondary;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.popup h3 {
+    margin-top: 0;
+    color: $color-primary;
+}
+
+.popup ul {
+    list-style: none;
+    padding: 0;
+}
+
+.popup li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0;
+    background-color: $color-light;
+    margin: 5px 0;
+    border-radius: 5px;
+}
+
+.popup button {
+    background-color: $color-primary;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.popup button:hover {
+    background-color: darken($color-primary, 10%);
+}

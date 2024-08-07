@@ -2,13 +2,18 @@
     <div class="profile-sidebar">
         <!-- Profile Information -->
         <h2>Profile Information</h2>
-        <p><strong>Name:</strong> {{ currentUser.name }}</p>
-        <p><strong>Email:</strong> {{ currentUser.emailAddress }}</p>
-        <p><strong>Phone:</strong> {{ currentUser.phoneNumber }}</p>
-        <p><strong>Date of Birth:</strong> {{ currentUser.dateOfBirth }}</p>
-        <p><strong>Gender:</strong> {{ currentUser.gender }}</p>
-        <p><strong>Address:</strong> {{ currentUser.homeAddress }}</p>
-        <p><strong>Insurance Number:</strong> {{ currentUser.insuranceNumber }}</p>
+        <div class="profile-display">
+            <p><strong>Name:</strong> {{ currentUser.name }}</p>
+            <p><strong>Email:</strong> {{ currentUser.emailAddress }}</p>
+            <p><strong>Phone:</strong> {{ currentUser.phoneNumber }}</p>
+            <p><strong>Date of Birth:</strong> {{ currentUser.dateOfBirth }}</p>
+            <p><strong>Gender:</strong> {{ currentUser.gender }}</p>
+            <p><strong>Address:</strong> {{ currentUser.homeAddress }}</p>
+            <p><strong>Insurance Number:</strong> {{ currentUser.insuranceNumber }}</p>
+        </div>
+
+        <button class="btn btn-primary" (click)="openUpdateModal()">Update Details</button>
+        <button class="btn btn-danger" (click)="deleteAccount()">Delete Account</button>
     </div>
 
     <div class="appointments-container">
@@ -29,13 +34,17 @@
                     <td>{{ appointment.appointmentTime }}</td>
                     <td>{{ appointment.providerName }}</td>
                     <td>
-                        <button (click)="cancelAppointment(appointment.appointmentId)">Cancel</button>
-                        <button
+                        <button class="btn btn-danger"
+                            (click)="cancelAppointment(appointment)">Cancel</button>
+                        <button class="btn btn-primary"
                             (click)="rescheduleAppointment(appointment.appointmentId, { newDate: '2024-08-01', newTime: '10:00' })">Reschedule</button>
                     </td>
                 </tr>
             </tbody>
         </table>
+        <div *ngIf="upcomingErrorMessage" class="error-message">
+            {{ upcomingErrorMessage }}
+        </div>
 
         <!-- Past Appointments -->
         <h2>Past Appointments</h2>
@@ -57,5 +66,8 @@
                 </tr>
             </tbody>
         </table>
+        <div *ngIf="pastErrorMessage" class="error-message">
+            {{ pastErrorMessage }}
+        </div>
     </div>
 </div>

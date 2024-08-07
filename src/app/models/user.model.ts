@@ -1,10 +1,10 @@
 export interface User {
-  user_id: number;
+  userId: number;
   name: string;
   role: 'Patient' | 'Provider' | 'Admin';
-  email_address: string;
-  phone_number?: string;
+  emailAddress: string;
+  phoneNumber?: string;
   password: string;
-  created_at: string;
-  updated_at: string;
+  createdAt: string;
+  updatedAt: string;
 }

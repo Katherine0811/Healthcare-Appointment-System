@@ -1,0 +1,34 @@
+<div class="calendar-container">
+    <div class="calendar-header">
+        <button (click)="changeMonth(-1)">Previous Month</button>
+        <span>{{ currentMonth | date: 'MMMM yyyy' }}</span>
+        <button (click)="changeMonth(1)">Next Month</button>
+    </div>
+
+    <table class="calendar">
+        <thead>
+            <tr>
+                <th *ngFor="let day of ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']">{{ day }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let week of getWeeksInMonth(currentMonth)">
+                <td *ngFor="let day of week">
+                    <div class="day-cell" *ngIf="!day.isPlaceholder" (click)="onDateClick(day.date)">
+                        <span>{{ day.date?.getDate() }}</span>
+                    </div>
+                    <div class="day-cell placeholder" *ngIf="day.isPlaceholder"></div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ng-container *ngIf="selectedDate">
+        <availability-dialog 
+            [date]="selectedDate" 
+            [availability]="availability[selectedDate]"
+            (update)="handleUpdate($event)"
+            (close)="closePopup()">
+        </availability-dialog>
+    </ng-container>
+</div>

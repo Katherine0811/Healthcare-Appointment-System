@@ -1,0 +1,86 @@
+<body>
+    <div class="update-container">
+        <div class="update-box">
+            <h1 class="update-title">Update Profile</h1>
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                <div class="input-group">
+                    <label for="name">Name</label>
+                    <input id="name" formControlName="name" type="text">
+                </div>
+
+                <div class="input-group">
+                    <label for="emailAddress">Email Address</label>
+                    <input id="emailAddress" formControlName="emailAddress" type="email">
+                </div>
+
+                <div class="input-group">
+                    <label for="phoneNumber">Phone Number</label>
+                    <input id="phoneNumber" formControlName="phoneNumber" type="text">
+                </div>
+
+                <div class="input-group">
+                    <label for="role">Role</label>
+                    <select id="role" formControlName="role" (change)="onRoleChange($event)">
+                        <option value="Patient" [selected]="isPatient">Patient</option>
+                        <option value="Provider" [selected]="isProvider">Provider</option>
+                    </select>
+                </div>
+
+                <div *ngIf="isPatient" class="patient-fields">
+                    <div class="input-group">
+                        <label for="dob">Date of Birth</label>
+                        <input id="dob" formControlName="dateOfBirth" type="date">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="gender">Gender</label>
+                        <select id="gender" formControlName="gender">
+                            <option value="Male" [selected]="currentUser.gender === 'Male'">Male</option>
+                            <option value="Female" [selected]="currentUser.gender === 'Female'">Female</option>
+                            <option value="Other" [selected]="currentUser.gender === 'Other'">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="address">Home Address</label>
+                        <input id="address" formControlName="homeAddress" type="text">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="insurance">Insurance Number</label>
+                        <input id="insurance" formControlName="insuranceNumber" type="text">
+                    </div>
+                </div>
+
+                <div *ngIf="isProvider" class="provider-fields">
+                    <div class="input-group">
+                        <label for="specialization">Specialization</label>
+                        <select id="specialization" formControlName="specialization">
+                            <option value="Cardiology" [selected]="currentUser.specialization === 'Cardiology'">
+                                Cardiology</option>
+                            <option value="Dermatology" [selected]="currentUser.specialization === 'Dermatology'">
+                                Dermatology</option>
+                            <option value="Neurology" [selected]="currentUser.specialization === 'Neurology'">Neurology
+                            </option>
+                            <option value="Pediatrics" [selected]="currentUser.specialization === 'Pediatrics'">
+                                Pediatrics</option>
+                            <option value="Radiology" [selected]="currentUser.specialization === 'Radiology'">Radiology
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="license">License Number</label>
+                        <input id="license" formControlName="licenseNumber" type="text">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Update Profile</button>
+                <button type="button" class="btn btn-secondary" (click)="onCancel()">Cancel</button>
+            </form>
+            <div *ngIf="errorMessage" class="error-message">
+                {{ errorMessage }}
+            </div>
+        </div>
+    </div>
+</body>

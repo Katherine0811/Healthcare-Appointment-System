@@ -1,0 +1,176 @@
+$color-primary: #7393A7;
+$color-secondary: #6C737E;
+$color-light: #E8ECF1;
+$color-lighter: #B5CFD8;
+$error-color: #d9534f;
+
+.dashboard-container {
+    display: flex;
+    padding: 20px;
+    background-color: $color-light;
+    color: $color-secondary;
+
+    .profile-sidebar {
+            width: 375px;
+            border-radius: 5px;
+            margin-right: 20px;
+    
+            h2 {
+                margin-bottom: 10px;
+            }
+    
+            .profile-display {
+                padding: 20px;
+                margin-bottom: 10px;
+                color: $color-light;
+                background-color: $color-secondary;
+    
+                p {
+                    margin: 5px 0;
+                }
+            }
+    
+            button {
+                display: block;
+                width: 100%;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                margin-bottom: 10px;
+                text-align: center;
+    
+                &.btn-primary {
+                    background-color: $color-primary;
+                    color: white;
+    
+                    &:hover {
+                        background-color: darken($color-primary, 10%);
+                    }
+                }
+    
+                &.btn-danger {
+                    background-color: $error-color;
+                    color: white;
+    
+                    &:hover {
+                        background-color: darken($error-color, 10%);
+                    }
+                }
+            }
+        }
+
+    .appointments-container {
+        flex: 1;
+
+        h2 {
+            color: $color-primary;
+            margin-bottom: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+
+            th,
+            td {
+                padding: 10px;
+                text-align: left;
+                border-bottom: 1px solid $color-lighter;
+            }
+
+            th {
+                background-color: $color-lighter;
+                color: $color-secondary;
+            }
+
+            td {
+                background-color: white;
+            }
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+
+            &.btn-primary {
+                background-color: $color-primary;
+                color: white;
+
+                &:hover {
+                    background-color: darken($color-primary, 10%);
+                }
+            }
+
+            &.btn-danger {
+                background-color: $error-color;
+                color: white;
+
+                &:hover {
+                    background-color: darken($error-color, 10%);
+                }
+            }
+
+            &.btn-secondary {
+                background-color: $color-secondary;
+                color: white;
+
+                &:hover {
+                    background-color: darken($color-secondary, 10%);
+                }
+            }
+
+            &.btn-success {
+                background-color: #5cb85c;
+                color: white;
+
+                &:hover {
+                    background-color: darken(#5cb85c, 10%);
+                }
+            }
+
+            &.btn-info {
+                background-color: #5bc0de;
+                color: white;
+
+                &:hover {
+                    background-color: darken(#5bc0de, 10%);
+                }
+            }
+        }
+
+        .patient-records {
+            padding: 20px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+
+            h2 {
+                color: $color-primary;
+                margin-bottom: 10px;
+            }
+
+            p {
+                margin: 5px 0;
+
+                strong {
+                    color: $color-secondary;
+                }
+            }
+        }
+
+        .error-message {
+            padding: 15px;
+            margin: 20px 0px;
+            border: 1px solid $error-color;
+            border-radius: 5px;
+            background-color: rgba($error-color, 0.1);
+            color: $error-color;
+        }
+    }
+}

@@ -9,8 +9,7 @@
             <h3>Explore</h3>
             <ul>
                 <li *ngIf="dashboardRoute"><a [routerLink]="dashboardRoute">Dashboard</a></li>
-                <li><a routerLink="/appointment-booking">Appointment Booking</a></li>
-                <li><a routerLink="/about">About Us</a></li>
+                <li *ngIf="functionName"><a [routerLink]="functionRoute">{{ functionName }}</a></li>
                 <li><a routerLink="/contact">Contact Us</a></li>
             </ul>
         </div>

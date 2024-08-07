@@ -1,0 +1,69 @@
+$color-primary: #7393A7;
+$color-secondary: #6C737E;
+$color-light: #E8ECF1;
+$color-lighter: #B5CFD8;
+
+.popup {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: white;
+    border: 1px solid $color-secondary;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.popup h3 {
+    margin-top: 0;
+    color: $color-primary;
+    font-size: 1.5em;
+}
+
+.popup ul {
+    list-style: none;
+    padding: 0;
+}
+
+.popup li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0;
+    background-color: $color-light;
+    margin: 5px 0;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.popup button {
+    background-color: $color-primary;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1em;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.popup button:hover {
+    background-color: darken($color-primary, 10%);
+}
+
+.popup label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.popup input[type="checkbox"] {
+    margin-right: 10px;
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+.popup .edit-buttons {
+    display: flex;
+    justify-content: flex-end;
+}
