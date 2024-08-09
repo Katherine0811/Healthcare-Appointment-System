@@ -24,6 +24,7 @@ $error-color: #d9534f;
             margin-bottom: 10px;
             color: $color-light;
             background-color: $color-secondary;
+
             p {
                 margin: 5px 0;
             }
@@ -87,6 +88,35 @@ $error-color: #d9534f;
             td {
                 background-color: white;
             }
+
+            tbody {
+                display: block;
+                max-height: 225px;
+                overflow-y: auto;
+            }
+
+            tr {
+                display: table;
+                width: 100%;
+                table-layout: fixed;
+            }
+
+            // Highlight the row in edit mode
+            tr.editing {
+                td {
+                    background-color: $color-secondary;
+                    color: white;
+                }
+
+                input,
+                select {
+                    width: 80%;
+                    padding: 5px;
+                    border: 1px solid $color-lighter;
+                    border-radius: 4px;
+                    font-size: 1em;
+                }
+            }
         }
 
         button {
@@ -115,11 +145,11 @@ $error-color: #d9534f;
             }
 
             &.btn-secondary {
-                background-color: $color-secondary;
-                color: white;
+                background-color: $color-light;
+                color: $color-secondary;
 
                 &:hover {
-                    background-color: darken($color-secondary, 10%);
+                    background-color: darken($color-light, 10%);
                 }
             }
         }

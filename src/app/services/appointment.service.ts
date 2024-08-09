@@ -49,8 +49,8 @@ export class AppointmentService {
     return this.http.delete<void>(`${this.apiUrl}/cancel/${appointmentId}`);
   }
 
-  rescheduleAppointment(appointmentId: number, newDetails: AppointmentDTO): Observable<AppointmentDTO> {
-    return this.http.put<AppointmentDTO>(`${this.apiUrl}/reschedule/${appointmentId}`, newDetails);
+  rescheduleAppointment(appointmentId: number, newDate: string, newTime: string): Observable<AppointmentDTO> {
+    return this.http.put<AppointmentDTO>(`${this.apiUrl}/reschedule/${appointmentId}`, { appointmentDate: newDate, appointmentTime: newTime });
   }
 
   completeAppointment(appointmentId: number): Observable<void> {

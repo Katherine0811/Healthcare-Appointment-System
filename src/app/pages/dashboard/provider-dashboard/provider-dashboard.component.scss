@@ -88,6 +88,18 @@ $error-color: #d9534f;
             td {
                 background-color: white;
             }
+
+            tbody {
+                display: block;
+                max-height: 225px;
+                overflow-y: auto;
+            }
+
+            tr {
+                display: table;
+                width: 100%;
+                table-layout: fixed;
+            }
         }
 
         button {

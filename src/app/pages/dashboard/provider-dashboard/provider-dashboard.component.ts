@@ -32,6 +32,7 @@ export class ProviderDashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentUser = this.authService.getCurrentUser();
+    console.log(this.currentUser);
     this.fetchUpcomingAppointments();
   }
 
@@ -39,10 +40,10 @@ export class ProviderDashboardComponent implements OnInit {
     const providerId = this.currentUser.providerId;
     this.appointmentService.getUpcomingAppointmentsByProvider(providerId).subscribe(
       (data: AppointmentDTO[]) => {
-        this.upcomingAppointments = data;
+        this.upcomingAppointments = data.sort((a, b) => new Date(a.appointmentDate).getTime() - new Date(b.appointmentDate).getTime());
       },
       error => {
-        this.upcomingErrorMessage = 'Error fetching upcoming appointments. Please try again later.';
+        this.upcomingErrorMessage = 'There is no upcoming appointments. Please try again later.';
         console.error('Error fetching upcoming appointments', error);
       }
     );
@@ -52,6 +53,7 @@ export class ProviderDashboardComponent implements OnInit {
     this.appointmentService.completeAppointment(appointmentId).subscribe(
       () => {
         console.log('Appointment completed successfully');
+        this.upcomingAppointments = [];
         this.fetchUpcomingAppointments();
       },
       error => {
@@ -83,6 +85,7 @@ export class ProviderDashboardComponent implements OnInit {
       this.authService.deleteUserAccount(this.currentUser.userId).subscribe(
         () => {
           console.log('Account deleted successfully');
+          this.authService.logout();
           this.router.navigate(['/login']);
         },
         error => {

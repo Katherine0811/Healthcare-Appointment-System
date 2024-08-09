@@ -56,11 +56,15 @@ export class UpdateProfileComponent implements OnInit {
     }
 
     const updatedData = this.form.value;
-    console.log(updatedData);
-    this.authService.updateUserDetails(updatedData).subscribe(
+    this.authService.updateUserDetails(this.currentUser.userId, updatedData).subscribe(
       response => {
+        this.authService.setCurrentUser(response);
         console.log('User updated successfully', response);
-        this.router.navigate(['/patient-dashboard']);
+        if (this.isPatient) {
+          this.router.navigate(['/patient-dashboard']);
+        } else if (this.isProvider) {
+          this.router.navigate(['/provider-dashboard']);
+        }
       },
       error => {
         console.error('Error updating user', error);
@@ -70,6 +74,10 @@ export class UpdateProfileComponent implements OnInit {
   }
 
   onCancel(): void {
-    this.router.navigate(['/patient-dashboard']);
+    if (this.isPatient) {
+      this.router.navigate(['/patient-dashboard']);
+    } else if (this.isProvider) {
+      this.router.navigate(['/provider-dashboard']);
+    }
   }
 }

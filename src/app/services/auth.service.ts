@@ -65,8 +65,8 @@ export class AuthService {
     this.currentUserSubject.next(user); // Update the BehaviorSubject
   }
 
-  updateUserDetails(user: any): Observable<any> {
-    return this.http.put<any>(`${this.apiUrl}/${user.userId}`, user);
+  updateUserDetails(userId: number, user: any): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/${userId}`, user);
   }
 
   deleteUserAccount(userId: number): Observable<void> {
