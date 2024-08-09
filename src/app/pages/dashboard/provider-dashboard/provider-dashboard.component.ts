@@ -20,6 +20,7 @@ export class ProviderDashboardComponent implements OnInit {
   selectedPatientRecords: any;
   upcomingErrorMessage: string | null = null;
   recordsErrorMessage: string | null = null;
+  errorMessage: string | null = null;
 
   constructor(
     private authService: AuthService, 
@@ -27,8 +28,6 @@ export class ProviderDashboardComponent implements OnInit {
     private patientService: PatientService,
     private router: Router
   ) {}
-
-  errorMessage: string | null = null;
 
   ngOnInit(): void {
     this.currentUser = this.authService.getCurrentUser();
@@ -94,5 +93,10 @@ export class ProviderDashboardComponent implements OnInit {
         }
       );
     }
+  }
+
+  canComplete(date: string): boolean {
+    const today = new Date().toISOString().split('T')[0];
+    return date < today;
   }
 }

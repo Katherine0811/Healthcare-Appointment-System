@@ -15,6 +15,9 @@ import { CommonModule } from '@angular/common';
 export class RegisterComponent implements OnInit {
   isPatient = false;
   isProvider = false;
+  maxDate: string = '';
+  form!: FormGroup;
+  errorMessage: string | null = null;
 
   constructor(
     private authService: AuthService,
@@ -22,10 +25,8 @@ export class RegisterComponent implements OnInit {
     private router: Router
   ) {}
 
-  form!: FormGroup;
-  errorMessage: string | null = null;
-
   ngOnInit() {
+    this.maxDate = new Date().toISOString().split('T')[0];
     this.form = this.formBuilder.group({
       name: ['', [Validators.required]],
       emailAddress: ['', [Validators.required, Validators.email]], // Email validation

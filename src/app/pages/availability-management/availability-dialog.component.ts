@@ -13,16 +13,18 @@ export class AvailabilityDialog implements OnChanges {
 
   @Input() date!: string;
   @Input() availability: Availability[] = [];
+  @Input() bookedSlots: string[] = [];
   @Output() update = new EventEmitter<{ date: string; timeSlots: string[] }>();
   @Output() close = new EventEmitter<void>();
   
   timeSlots = ['10:00:00', '11:00:00', '14:00:00', '15:00:00']; // Default time slots
+  canChangeAvailability: boolean = true; // Check if selected day is greater than today
   isEditMode: boolean = false;
   selectedTimeSlots: Set<string> = new Set();
 
   ngOnChanges(): void {
+    this.checkIfCanChangeAvailability();
     this.selectedTimeSlots = new Set(this.availability.flatMap(a => a.availableTimes));
-    console.log(this.selectedTimeSlots);
   }
 
   toggleEditMode(): void {
@@ -49,5 +51,14 @@ export class AvailabilityDialog implements OnChanges {
       this.selectedTimeSlots.add(timeSlot);
     }
     this.selectedTimeSlots = new Set(Array.from(this.selectedTimeSlots).sort());
+  }
+
+  checkIfCanChangeAvailability(): void {
+    const today = new Date().toISOString().split('T')[0];
+    this.canChangeAvailability = this.date > today;
+  }
+
+  isBooked(timeSlot: string): boolean {
+    return this.bookedSlots.includes(timeSlot);
   }
 }

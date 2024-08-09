@@ -14,7 +14,7 @@
 
             <div class="input-group">
                 <label for="appointmentDate">Appointment Date</label>
-                <input id="appointmentDate" formControlName="appointmentDate" type="date" (change)="onDateChange()" required />
+                <input id="appointmentDate" formControlName="appointmentDate" type="date" (change)="onDateChange()" [min]="minDate" required />
             </div>
 
             <div class="input-group" *ngIf="selectedProvider && selectedDate">

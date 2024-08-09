@@ -32,10 +32,10 @@
                     <td>{{ appointment.appointmentTime }}</td>
                     <td>{{ appointment.patientName }}</td>
                     <td>
-                        <button class="btn btn-success"
-                            (click)="completeAppointment(appointment.appointmentId)">Complete</button>
                         <button class="btn btn-info" (click)="viewPatientRecords(appointment.patientId)">View
                             Records</button>
+                        <button class="btn btn-success" *ngIf="canComplete(appointment.appointmentDate)"
+                            (click)="completeAppointment(appointment.appointmentId)">Complete</button>
                     </td>
                 </tr>
             </tbody>

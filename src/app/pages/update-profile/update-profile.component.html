@@ -29,7 +29,7 @@
                 <div *ngIf="isPatient" class="patient-fields">
                     <div class="input-group">
                         <label for="dob">Date of Birth</label>
-                        <input id="dob" formControlName="dateOfBirth" type="date">
+                        <input id="dob" formControlName="dateOfBirth" type="date" [max]="maxDate">
                     </div>
 
                     <div class="input-group">

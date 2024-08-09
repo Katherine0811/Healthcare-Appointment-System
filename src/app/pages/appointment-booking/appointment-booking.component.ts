@@ -24,6 +24,7 @@ export class AppointmentBookingComponent implements OnInit {
   selectedProviderId!: number;
   selectedDate!: string;
   availableTimes: string[] = [];
+  minDate: string = '';
 
   constructor(
     private fb: FormBuilder,
@@ -42,6 +43,7 @@ export class AppointmentBookingComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentUser = this.authService.getCurrentUser();
+    this.minDate = new Date().toISOString().split('T')[0];
     this.loadProviders();
   }
 

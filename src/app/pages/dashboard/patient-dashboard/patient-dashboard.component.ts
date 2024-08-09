@@ -9,7 +9,6 @@ import { AvailabilityService } from '../../../services/availability.service';
 import { Availability } from '../../../models/availability.model';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { ProviderService } from '../../../services/provider.service';
 
 @Component({
   selector: 'patient-dashboard',
@@ -30,12 +29,12 @@ export class PatientDashboardComponent implements OnInit {
   editingAppointmentId: number | null = null;
   newDate: string = '';
   newTime: string = '';
+  minDate: string = '';
 
   constructor(
     private authService: AuthService, 
     private appointmentService: AppointmentService,
     private availabilityService: AvailabilityService,
-    private providerService: ProviderService,
     private router: Router
   ) {}
 
@@ -43,6 +42,7 @@ export class PatientDashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentUser = this.authService.getCurrentUser();
+    this.minDate = new Date().toISOString().split('T')[0];
     this.fetchUpcomingAppointments();
     this.fetchPastAppointments();
   }
@@ -105,7 +105,7 @@ export class PatientDashboardComponent implements OnInit {
         // Refresh the list of upcoming and past appointments
         this.upcomingAppointments = [];
         this.fetchUpcomingAppointments();
-        this.pastAppointments = [];
+        this.pastErrorMessage = null;
         this.fetchPastAppointments();
       }),
       catchError(error => {
@@ -191,6 +191,11 @@ export class PatientDashboardComponent implements OnInit {
         }
       );
     }
+  }
+
+  showAction(date: string): boolean {
+    const today = new Date().toISOString().split('T')[0];
+    return date > today;
   }
 
   startEditing(appointment: AppointmentDTO): void {

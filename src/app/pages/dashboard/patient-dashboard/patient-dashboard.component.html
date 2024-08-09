@@ -33,7 +33,7 @@
             [ngClass]="{ 'editing': editingAppointmentId === appointment.appointmentId }">
             <td *ngIf="editingAppointmentId !== appointment.appointmentId">{{ appointment.appointmentDate }}</td>
             <td *ngIf="editingAppointmentId === appointment.appointmentId">
-              <input type="date" [(ngModel)]="newDate" (change)="checkAvailability(appointment)" required />
+              <input type="date" [(ngModel)]="newDate" (change)="checkAvailability(appointment)" [min]="minDate" required />
             </td>
 
             <td *ngIf="editingAppointmentId !== appointment.appointmentId">{{ appointment.appointmentTime }}</td>
@@ -46,12 +46,12 @@
             <td>{{ appointment.providerName }}</td>
 
             <td *ngIf="editingAppointmentId !== appointment.appointmentId">
-              <button class="btn btn-danger" (click)="cancelAppointment(appointment)">Cancel</button>
-              <button class="btn btn-primary" (click)="startEditing(appointment)">Reschedule</button>
+              <button class="btn btn-primary" *ngIf="showAction(appointment.appointmentDate)" (click)="startEditing(appointment)">Reschedule</button>
+              <button class="btn btn-danger" *ngIf="showAction(appointment.appointmentDate)" (click)="cancelAppointment(appointment)">Cancel</button>
             </td>
             <td *ngIf="editingAppointmentId === appointment.appointmentId">
-              <button class="btn btn-secondary" (click)="rescheduleAppointment(appointment, newDate, newTime)">Submit</button>
               <button class="btn btn-danger" (click)="cancelEditing()">Withdraw</button>
+              <button class="btn btn-secondary" (click)="rescheduleAppointment(appointment, newDate, newTime)">Submit</button>
             </td>
           </tr>
         </tbody>

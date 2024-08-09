@@ -65,7 +65,7 @@
                 <div *ngIf="isPatient" class="patient-fields">
                     <div class="input-group">
                         <label for="dob">Date of Birth</label>
-                        <input id="dob" formControlName="dateOfBirth" type="date">
+                        <input id="dob" formControlName="dateOfBirth" type="date" [max]="maxDate" >
                         <div *ngIf="form.get('dateOfBirth')?.touched && form.get('dateOfBirth')?.invalid">
                             <small *ngIf="form.get('dateOfBirth')?.errors?.['required']">Date of birth is required.</small>
                         </div>

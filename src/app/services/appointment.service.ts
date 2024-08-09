@@ -29,6 +29,12 @@ export class AppointmentService {
     );
   }
 
+  getAppointmentsByProviderAndDate(providerId: number, date: string): Observable<AppointmentDTO[]> {
+    return this.http.get<AppointmentDTO[]>(`${this.apiUrl}/provider/${providerId}/date/${date}`).pipe(
+      catchError(this.handleError)
+    );
+  }
+
   private handleError(error: HttpErrorResponse) {
     let errorMessage = 'An unknown error occurred!';
     if (error.error instanceof ErrorEvent) {

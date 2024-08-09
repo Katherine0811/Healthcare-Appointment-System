@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { Availability } from '../../models/availability.model';
 import { AvailabilityDialog } from "./availability-dialog.component";
+import { AppointmentService } from '../../services/appointment.service';
 
 @Component({
   selector: 'app-availability-management',
@@ -24,8 +25,13 @@ export class AvailabilityManagementComponent implements OnInit {
   currentMonth: Date = new Date();
   availability: { [date: string]: Availability[] } = {};
   selectedDate!: string;
+  bookedTimeSlots: string[] = []; 
 
-  constructor(private authService: AuthService, private availabilityService: AvailabilityService) {}
+  constructor(
+    private authService: AuthService, 
+    private availabilityService: AvailabilityService, 
+    private appointmentService: AppointmentService
+  ) {}
 
   ngOnInit(): void {
     this.currentUser = this.authService.getCurrentUser();
@@ -36,7 +42,20 @@ export class AvailabilityManagementComponent implements OnInit {
     this.selectedDate = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
     this.availabilityService.getAvailabilityByDate(this.selectedDate, this.currentUser.providerId).subscribe(data => {
       this.availability[this.selectedDate] = data;
+      this.fetchBookedTimeSlots();
     });
+  }
+
+  fetchBookedTimeSlots(): void {
+    this.appointmentService.getAppointmentsByProviderAndDate(this.currentUser.providerId, this.selectedDate)
+      .subscribe(
+        appointments => {
+          this.bookedTimeSlots = appointments.map(appointment => appointment.appointmentTime);
+        },
+        error => {
+          console.error('Error fetching booked time slots:', error);
+        }
+      );
   }
 
   changeMonth(offset: number): void {

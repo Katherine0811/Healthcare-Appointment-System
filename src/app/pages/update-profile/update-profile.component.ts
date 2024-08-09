@@ -16,6 +16,7 @@ export class UpdateProfileComponent implements OnInit {
   currentUser!: any;
   isPatient: boolean = false;
   isProvider: boolean = false;
+  maxDate: string = '';
   errorMessage: string | null = null;
 
   constructor(
@@ -28,6 +29,7 @@ export class UpdateProfileComponent implements OnInit {
     this.currentUser = this.authService.getCurrentUser();
     this.isPatient = this.currentUser.role === 'Patient';
     this.isProvider = this.currentUser.role === 'Provider';
+    this.maxDate = new Date().toISOString().split('T')[0];
 
     this.form = this.formBuilder.group({
       name: [this.currentUser.name, Validators.required],

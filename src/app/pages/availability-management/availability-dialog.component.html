@@ -1,21 +1,22 @@
 <div class="popup">
     <h3>Availability for {{ date }}</h3>
-    <div *ngIf="!isEditMode">
+    <div *ngIf="!isEditMode || !canChangeAvailability">
         <ul>
             <li *ngFor="let slot of selectedTimeSlots">
                 <span>{{ slot }}</span>
             </li>
         </ul>
-        <button (click)="toggleEditMode()">Change Availability</button>
+        <button *ngIf="canChangeAvailability" (click)="toggleEditMode()">Change Availability</button>
         <button (click)="closePopup()">Exit Panel</button>
     </div>
-    <div *ngIf="isEditMode">
+    <div *ngIf="isEditMode && canChangeAvailability">
         <ul>
             <li *ngFor="let slot of timeSlots">
                 <label>
-                    <input type="checkbox" [checked]="selectedTimeSlots.has(slot)" (change)="toggleTimeSlot(slot)">
+                    <input type="checkbox" [checked]="selectedTimeSlots.has(slot)" (change)="toggleTimeSlot(slot)" [disabled]="isBooked(slot)">>
                     {{ slot }}
                 </label>
+                <span *ngIf="isBooked(slot)" class="booked-message">** This timeslot has been booked for an appointment</span>
             </li>
         </ul>
         <button (click)="onSubmit()">Submit</button>

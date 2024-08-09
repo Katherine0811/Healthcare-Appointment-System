@@ -27,6 +27,7 @@
         <availability-dialog 
             [date]="selectedDate" 
             [availability]="availability[selectedDate]"
+            [bookedSlots]="bookedTimeSlots"
             (update)="handleUpdate($event)"
             (close)="closePopup()">
         </availability-dialog>
